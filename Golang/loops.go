@@ -16,4 +16,13 @@ func main() {
 			fmt.Printf("%d is divisible by three\n", j)
 		}
 	}
+
+	for j := 0; j < 4; j++ {
+		switch j {
+		case 3:
+			fmt.Println("number three")
+		case 0, 2:
+			fmt.Println("even") 
+		}
+	}
 }
