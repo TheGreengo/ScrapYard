@@ -13,14 +13,28 @@ List: # a dictionary is marked using a key then a : then the value
 - thing2
 - thing3
 --- # copying things
---- # complicated keys
+- &num 5000
+- thing: *num
 --- # wraps
+- |
+  the thing about this 
+  is that it should be on
+  three different lines
+- > 
+  whereas 
+  this is 
+  all on 
+  one line
 --- # explicit types
+- not an int: !!str 202
+- not an int: !!binary 2048
 --- # unordered sets
+!!set
+? thing
+? thang
+? theng
 --- # ordered maps
---- # global tags
---- # 
---- # 
---- # 
---- # 
---- # 
+!!omap
+- thing: 1
+- thang: 2
+- theng: 3
