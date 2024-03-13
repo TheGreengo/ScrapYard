@@ -1,4 +1,26 @@
-List:
-- thing one
-- thing two
-- thing three
+# comments start with #'s
+# documents can be seperated with ---
+---
+List: # a dictionary is marked using a key then a : then the value
+- word # a list has values after dashes or seperated by commas
+- inner : thing, thang, theng
+- 
+  name: Toa Kopaka
+  age: 5000
+  element: ice
+---
+- thing
+- thing2
+- thing3
+--- # copying things
+--- # complicated keys
+--- # wraps
+--- # explicit types
+--- # unordered sets
+--- # ordered maps
+--- # global tags
+--- # 
+--- # 
+--- # 
+--- # 
+--- # 
