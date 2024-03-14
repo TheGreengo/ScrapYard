@@ -4,10 +4,24 @@ use warnings;
 
 my %thing = (
     word => 1,
-    werd => 2,
+    werd => 2
 );
 
-my $res;
-chomp($res = <STDIN>);
+my %thang = qw(
+    o word
+    e werd
+);
 
-print($thing{$res}, "\n");
+my $one;
+my $two;
+
+chomp($one = <STDIN>);
+chomp($two = <STDIN>);
+
+$thang{$one} = $two;
+
+delete $thang{'o'};
+
+for (keys %thang) {
+    print("The key $_ corresponds to the entry: $thang{$_}\n");
+}
