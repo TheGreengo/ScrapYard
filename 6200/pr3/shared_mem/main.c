@@ -21,24 +21,36 @@ int main(int argc, char ** argv) {
     const char * mess_a = "The very first message";
     const char * mess_b = "The second message";
     int shm_fd;
-    int size = 4096;
-    shared * ptr;
-    pthread_mutexattr_t m_attr;
-    pthread_condattr_t c_attr;
-    pthread_mutexattr_init(&m_attr);
-    pthread_mutexcond_init(&c_attr);
-    pthread_mutexattr_setpshared(&m_attr, PTHREAD_PROCESS_SHARED);
-    pthread_condattr_setpshared(&c_attr, PTHREAD_PROCESS_SHARED);
+    // pthread_mutexattr_t m_attr;
+    // pthread_condattr_t c_attr;
+    // pthread_mutexattr_init(&m_attr);
+    // pthread_mutexcond_init(&c_attr);
+    // pthread_mutexattr_setpshared(&m_attr, PTHREAD_PROCESS_SHARED);
+    // pthread_condattr_setpshared(&c_attr, PTHREAD_PROCESS_SHARED);
 
-    shm_fd = shm_open(name, O_CREAT | O_EXCL |O_WRONLY, 0666);
+    shm_fd = shm_open(name, O_CREAT | O_WRONLY, 0666);
+    printf("%d\n", shm_fd);
 
-    ftruncate(shm_fd, size);
+    int fail = ftruncate(shm_fd, sizeof(shared));
+    printf("%d\n", fail);
 
-    ptr = mmap(0, size, PROT_WRITE, MAP_SHARED, shm_fd, 0);
+    shared * ptr = mmap(0, sizeof(shared), PROT_WRITE, MAP_SHARED, shm_fd, 0);
+    if (ptr == MAP_FAILED) {
+        printf("Why isn't this working?\n");
+    }
 
-    pthread_mutex_init(&ptr->mut, &m_attr);
-    pthread_cond_init(&ptr->red, &c_attr);
-    pthread_cond_init(&ptr->writ, &c_attr);
+    ptr->perm = 'a';
+    printf("perm set\n");
+    sprintf(ptr->message, "%s", mess_a);
+    printf("message set\n");
+    strcat(ptr->message, mess_b);
+    printf("concatenation\n");
+
+    sleep(2);
+
+    // pthread_mutex_init(&ptr->mut, &m_attr);
+    // pthread_cond_init(&ptr->red, &c_attr);
+    // pthread_cond_init(&ptr->writ, &c_attr);
 
     /*
     * We'll first have a loop for if the permission is not 'a' or
@@ -46,8 +58,8 @@ int main(int argc, char ** argv) {
     * to 'a'
     */
 
-    sprintf(ptr, "%s", mess_a);
-    ptr += strlen(mess_a);
+    // sprintf(ptr, "%s", mess_a);
+    // ptr += strlen(mess_a);
 
     /*
     * Then wait for the permission to be 'p' again
@@ -55,8 +67,8 @@ int main(int argc, char ** argv) {
     * 'b'
     */
 
-    sprintf(ptr, "%s", mess_b);
-    ptr += strlen(mess_b);
+    // sprintf(ptr, "%s", mess_b);
+    // ptr += strlen(mess_b);
 
     /*
     * Wait for it to be p again. When the bit is 'p', we 
@@ -64,7 +76,7 @@ int main(int argc, char ** argv) {
     */
 
 	// mmap cleanup
-	int res = munmap(name, size);
+	int res = munmap(name, sizeof(shared));
     close(shm_fd);
     shm_unlink(name);
 

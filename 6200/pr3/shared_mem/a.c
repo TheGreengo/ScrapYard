@@ -10,19 +10,18 @@
 #include "faelles.h"
 
 int main(int argc, char ** argv) {
-    int size = 4096;
     int shm_fd;
     shared * ptr;
     char * name = "nonsense";
 
     shm_fd = shm_open(name, O_RDONLY, 0666);
 
-    ptr = mmap(0, size, PROT_READ, MAP_SHARED, shm_fd, 0);
+    ptr = mmap(0, sizeof(shared), PROT_READ, MAP_SHARED, shm_fd, 0);
 
     printf("%s", (char*)ptr);
     printf(" - printed by process a\n");
 
-	int res = munmap(name, size);
+	int res = munmap(name, sizeof(shared));
     close(shm_fd);
 
     return 0;
