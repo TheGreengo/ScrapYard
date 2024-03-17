@@ -4,6 +4,7 @@ Random directories for dinking around. I'm not sure what all I'll put in here, b
 ## Projs
 - Rode Lunner
 - Datistics
+- Finish tracker to have progress meters
 
 ## Wants to learns
 - using Valgrind
