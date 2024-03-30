@@ -27,4 +27,14 @@ func main() {
 	}
 
 	fmt.Println(thang["davs"])
+
+	other := []int32{5,4,3,2,1}
+
+	for ind, num := range other {
+		fmt.Printf("%v: %v\n", ind, num)
+	}
+
+	for key, val := range thing {
+		fmt.Printf("%v: %v\n", key, val)
+	}
 }
