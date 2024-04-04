@@ -1,10 +1,5 @@
 package main
 
-// next up, slices
-
-/*
-*/
-
 import (
 	"fmt"
 	"slices"
