@@ -2,9 +2,16 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
+func blocker(start chan bool) {
+	time.Sleep(time.Second)
+	start <- false
+}
+
 func main() {
+	finished := make(chan bool, 1)
 	thing := make(chan string)
 	mess := make(chan string, 3)
 
@@ -24,4 +31,12 @@ func main() {
 	muss := <- mess
 
 	fmt.Println(mass, moss, muss)
+
+	fmt.Println("Launching the stopper")
+
+	go blocker(finished)
+
+	<- finished
+
+	fmt.Println("Waited")
 }
