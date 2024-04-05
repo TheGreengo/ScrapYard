@@ -5,6 +5,20 @@ import (
 	"errors"
 )
 
+type PersonError struct {
+	height int
+	weight int
+	mess string
+}
+
+func (err *PersonError) Error() string {
+	return fmt.Sprintf("%d and %d with %s", err.height, err.weight, err.mess)
+}
+
+func badPerson() (int, error) {
+	return 5, &PersonError{height: 6, weight: 180, mess: "Charlie Brown"}
+}
+
 var ErrorBad = fmt.Errorf("Bad things")
 
 func bad(thing int, thang int) (float64, error) {
@@ -40,5 +54,11 @@ func main() {
 		}
 	} else {
 		fmt.Println(thing)
+	}
+
+	_, eerr := badPerson()
+	var pe *PersonError
+	if errors.As(eerr, &pe) {
+		fmt.Println(eerr.Error())
 	}
 }
