@@ -38,4 +38,12 @@ func main() {
 			fmt.Println(msg2)
 		}
 	}
+
+	go timeDel(thang, 3, "third")
+	select {
+	case msg1 := <-thang:
+		fmt.Println(msg1)
+	case <-time.After(time.Second):
+		fmt.Println("delayed")
+	}
 }
