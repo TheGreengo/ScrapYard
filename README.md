@@ -9,7 +9,7 @@ Random directories for dinking around. I'm not sure what all I'll put in here, b
 ## Wants to learns
 - using SSL/SSD/SDL for windows in C
 - GO
-  - by example: 35/83
+  - by example: 36/83
 - concurrency in GO
 - Interpretor/Compiler in GO
 - Swift
