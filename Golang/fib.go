@@ -16,5 +16,6 @@ func phi(num int) float64 {
 }
 
 func main() {
-	fmt.Println("Hello", phi(50))
+	fmt.Println("Fib 20:", fib(20))
+	fmt.Println("Phi 20:", phi(20))
 }
