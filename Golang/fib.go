@@ -5,7 +5,7 @@ import (
 )
 
 func fib(num int) int {
-	if (num == 0 || num == 1) {
+	if (num == 1 || num == 2) {
 		return 1
 	}
 	return fib(num - 2) + fib(num - 1)
@@ -16,6 +16,8 @@ func phi(num int) float64 {
 }
 
 func main() {
-	fmt.Println("Fib 20:", fib(20))
-	fmt.Println("Phi 20:", phi(20))
+	var i int
+	fmt.Scan(&i)
+	fmt.Println("Fib",i,":", fib(i))
+	fmt.Println("Phi",i,":", phi(i))
 }
