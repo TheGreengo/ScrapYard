@@ -2,12 +2,17 @@ package main
 
 import (
 	"os"
+	"fmt"
 )
 
 func main() {
-	writ_file, _ := os.Create("./written.txt")
-	defer writ_file.Close()
-
+	
 	mess := []byte{ 66, 114, 97, 100, 101, 110, 10 }			
-	writ_file.Write(mess)
+
+	 err := os.WriteFile("./written.txt", mess, 0644)
+
+	if err != nil {
+		fmt.Println("didn't open")
+		panic(err)
+	}
 }
