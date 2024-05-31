@@ -1,0 +1,6 @@
+Name Age Height Weight Job
+Alex 12  52     79     n/a
+Bob  37  73     220    plumber
+Carry 41 63     140    secretary
+Steve 25 69     145    doctor
+Jack 32  70     161    pirate
