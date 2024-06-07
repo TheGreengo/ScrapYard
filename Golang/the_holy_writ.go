@@ -4,6 +4,7 @@ import (
 	"os"
 	"fmt"
 )
+//    file, err := os.OpenFile("sample.txt", os.O_WRONLY|os.O_CREATE, 0644)
 
 func main() {
 	
